@@ -9,7 +9,7 @@ import com.linkaja.news.R
 import com.linkaja.news.model.Category
 import kotlinx.android.synthetic.main.item_menu.view.*
 
-class CategoryAdapter(var categoryList: ArrayList<Category>, var categoryItemListener: (Category) -> Unit) : RecyclerView.Adapter<CategoryAdapter.Holder>() {
+class CategoryAdapter(var categoryList: List<Category>, var categoryItemListener: (Category) -> Unit) : RecyclerView.Adapter<CategoryAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_menu, parent, false)

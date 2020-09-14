@@ -4,7 +4,7 @@
     xmlns:apps="http://schemas.android.com/tools"
     android:id="@+id/layout_status"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="220dp"
     android:background="@color/light_gray"
     android:gravity="center"
     apps:showIn="@layout/fragment_home">
@@ -52,8 +52,7 @@
                     android:layout_marginLeft="@dimen/medium_space"
                     android:layout_marginRight="@dimen/medium_space"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

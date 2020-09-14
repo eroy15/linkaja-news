@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -90,12 +91,27 @@ class SourceNewsActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_search, menu)
 
+        val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
+        val searchView: SearchView? = searchItem?.actionView as SearchView
+        searchView!!.queryHint = "Cari Sumber Berita ..."
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+                //sourceAdapter.filter.filter(s)
+                return false
+            }
+        })
+
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_search) {
-            // search func
             return true
         }
         return super.onOptionsItemSelected(item)

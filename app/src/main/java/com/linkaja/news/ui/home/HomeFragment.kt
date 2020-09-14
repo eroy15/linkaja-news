@@ -16,7 +16,6 @@ import com.linkaja.news.ui.webview.WebViewActivity
 import kotlinx.android.synthetic.main.content_category.*
 import kotlinx.android.synthetic.main.content_headline.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -33,7 +32,16 @@ class HomeFragment : Fragment() {
         nsvHome.smoothScrollTo(0, 0)
         rvContent.isNestedScrollingEnabled = false
 
-        categoryAdapter = CategoryAdapter(ArrayList(), categoryItemListener)
+        val listCategory: List<Category> = listOf(
+            Category(R.drawable.ic_bussiness, "Business", "business"),
+            Category(R.drawable.ic_entertainment, "Entertainment", "entertainment"),
+            Category(R.drawable.ic_health, "Health", "health"),
+            Category(R.drawable.ic_general, "General", "general"),
+            Category(R.drawable.ic_sport, "Sport", "sport"),
+            Category(R.drawable.ic_tech, "Technology", "technology")
+        )
+
+        categoryAdapter = CategoryAdapter(listCategory, categoryItemListener)
         rvContent.layoutManager = GridLayoutManager(activity, 3)
         rvContent.adapter = categoryAdapter
 
@@ -47,33 +55,6 @@ class HomeFragment : Fragment() {
             showWebView(url, title)
         }
 
-        categoryList()
-    }
-
-    private fun categoryList() {
-        val img = intArrayOf(
-            R.drawable.ic_bussiness,
-            R.drawable.ic_entertainment,
-            R.drawable.ic_health,
-            R.drawable.ic_general,
-            R.drawable.ic_sport,
-            R.drawable.ic_tech
-        )
-
-        var a: Category = Category(img[0], "Business", "business")
-        categoryAdapter.categoryList.add(a)
-        a = Category(img[1], "Entertainment", "entertainment")
-        categoryAdapter.categoryList.add(a)
-        a = Category(img[2], "Health", "health")
-        categoryAdapter.categoryList.add(a)
-        a = Category(img[3], "General", "general")
-        categoryAdapter.categoryList.add(a)
-        a = Category(img[4], "Sport", "sport")
-        categoryAdapter.categoryList.add(a)
-        a = Category(img[5], "Technology", "technology")
-        categoryAdapter.categoryList.add(a)
-
-        categoryAdapter.notifyDataSetChanged()
     }
 
     private var categoryItemListener: (Category) -> Unit = {
