@@ -12,9 +12,9 @@ import com.linkaja.news.model.Article
 import com.linkaja.news.util.Helper
 import kotlinx.android.synthetic.main.item_article.view.*
 
-class ArticleAdapter(var articleList: List<Article>, var articleItemListener: (Article) -> Unit) : RecyclerView.Adapter<ArticleAdapter.Holder>() {
+class ArticleAdapter(var articleList: List<Article>, var articleItemListener: (Article) -> Unit) : RecyclerView.Adapter<ArticleAdapter.Holder>(), Filterable {
 
-    //var articleListFilter: List<Article> = articleList
+    var articleListFilter: List<Article> = articleList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_article, parent, false)
@@ -22,13 +22,11 @@ class ArticleAdapter(var articleList: List<Article>, var articleItemListener: (A
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val article = articleList[position]
+        val article = articleListFilter[position]
         holder.bindHolder(article)
     }
 
-    override fun getItemCount(): Int {
-        return articleList.size
-    }
+    override fun getItemCount(): Int = articleListFilter.size
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -43,27 +41,27 @@ class ArticleAdapter(var articleList: List<Article>, var articleItemListener: (A
         }
     }
 
-//    override fun getFilter(): Filter {
-//        return object : Filter() {
-//            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                val charSearch = constraint.toString()
-//                if (charSearch.isNullOrEmpty()) {
-//                    articleListFilter = articleList
-//                } else {
-//                    articleListFilter = articleList.filter { it.title.contains(charSearch) }
-//                }
-//                val filterResults = FilterResults()
-//                filterResults.values = articleListFilter
-//
-//                return filterResults
-//            }
-//
-//            @Suppress("UNCHECKED_CAST")
-//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                articleListFilter = results?.values as List<Article>
-//                notifyDataSetChanged()
-//            }
-//
-//        }
-//    }
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    articleListFilter = articleList
+                } else {
+                    articleListFilter = articleList.filter { it.title.contains(charSearch) }
+                }
+                val filterResults = FilterResults()
+                filterResults.values = articleListFilter
+
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                articleListFilter = results?.values as List<Article>
+                notifyDataSetChanged()
+            }
+
+        }
+    }
 }

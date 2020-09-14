@@ -74,7 +74,7 @@ class ArticleActivity : BaseActivity() {
                     tvMessage.text = "Artikel Kosong. Coba lagi."
                 }else {
                     articleAdapter.articleList = it.data!!.articles
-                    articleAdapter.notifyDataSetChanged()
+                    articleAdapter.filter.filter("")
                     rvList.visibility = View.VISIBLE
                     llEmptyView.visibility = View.GONE
                 }
@@ -102,7 +102,7 @@ class ArticleActivity : BaseActivity() {
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                //articleAdapter.filter.filter(s)
+                articleAdapter.filter.filter(s)
                 return false
             }
         })

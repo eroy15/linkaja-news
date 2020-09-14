@@ -74,7 +74,7 @@ class SourceNewsActivity : BaseActivity() {
                     tvMessage.text = "Sumber Berita Kosong. Coba lagi."
                 }else {
                     sourceAdapter.sourceList = it.data!!.sources
-                    sourceAdapter.notifyDataSetChanged()
+                    sourceAdapter.filter.filter("")
                     rvList.visibility = View.VISIBLE
                     llEmptyView.visibility = View.GONE
                 }
@@ -101,7 +101,7 @@ class SourceNewsActivity : BaseActivity() {
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                //sourceAdapter.filter.filter(s)
+                sourceAdapter.filter.filter(s)
                 return false
             }
         })
