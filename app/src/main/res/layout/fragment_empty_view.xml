@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llEmptyView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivNoData"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_margin="@dimen/large_space"
+        android:src="@drawable/ic_empty"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        style="@style/AppTheme.TextAppearance.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_space"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Opps... Tidak ada data!"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_space"
+        android:layout_marginBottom="@dimen/large_space"
+        android:layout_marginLeft="@dimen/large_space"
+        android:layout_marginRight="@dimen/large_space"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Tunggu beberapa saat lagi dan coba lagi"/>
+
+</LinearLayout>
